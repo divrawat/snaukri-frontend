@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import "suneditor/dist/css/suneditor.min.css";
 
-// Dynamic import for SunEditor to support Next.js SSR
-const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
-
 export default function EditPost() {
+  const [SunEditor, setSunEditor] = useState(null);
   const [postId, setPostId] = useState("");
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
@@ -30,6 +27,12 @@ export default function EditPost() {
   const [debouncedTagSearch, setDebouncedTagSearch] = useState("");
   const [debouncedLocationSearch, setDebouncedLocationSearch] = useState("");
   const [debouncedQualificationSearch, setDebouncedQualificationSearch] = useState("");
+
+  useEffect(() => {
+    import("suneditor-react").then((mod) => {
+      setSunEditor(() => mod.default);
+    });
+  }, []);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -406,33 +409,39 @@ export default function EditPost() {
                   <div className={`rounded-xl overflow-hidden border ${
                     darkMode ? "bg-slate-950 border-slate-800 text-black" : "bg-white border-slate-200"
                   }`}>
-                    <SunEditor
-                      setContents={body}
-                      placeholder="Start typing paragraph here .............."
-                      onChange={handleBody}
-                      height="auto"
-                      setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
-                      setOptions={{
-                        buttonList: [
-                          ["fontSize"],
-                          [
-                            "bold",
-                            "underline",
-                            "italic",
-                            "blockquote",
-                            "subscript",
-                            "superscript",
+                    {SunEditor ? (
+                      <SunEditor
+                        setContents={body}
+                        placeholder="Start typing paragraph here .............."
+                        onChange={handleBody}
+                        height="auto"
+                        setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
+                        setOptions={{
+                          buttonList: [
+                            ["fontSize"],
+                            [
+                              "bold",
+                              "underline",
+                              "italic",
+                              "blockquote",
+                              "subscript",
+                              "superscript",
+                            ],
+                            ["formatBlock"],
+                            ["align", "horizontalRule", "list", "table"],
+                            ["fontColor", "hiliteColor"],
+                            ["removeFormat"],
+                            ["link", "image", "video"],
+                            ["preview"],
+                            ["showBlocks", "codeView", "fullScreen"],
                           ],
-                          ["formatBlock"],
-                          ["align", "horizontalRule", "list", "table"],
-                          ["fontColor", "hiliteColor"],
-                          ["removeFormat"],
-                          ["link", "image", "video"],
-                          ["preview"],
-                          ["showBlocks", "codeView", "fullScreen"],
-                        ],
-                      }}
-                    />
+                        }}
+                      />
+                    ) : (
+                      <div className="p-8 text-center text-slate-500 text-sm">
+                        Loading editor...
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

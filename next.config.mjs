@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactStrictMode: true,
+  transpilePackages: ["suneditor", "suneditor-react"],
 };
 
 export default nextConfig;

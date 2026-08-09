@@ -77,6 +77,8 @@ export async function getServerSideProps() {
   }
 }
 
+export const runtime = 'experimental-edge';
+
 export default function Home({ initialBlogs, initialLocations, initialQualifications }) {
   const router = useRouter();
   const [blogs, setBlogs] = useState(initialBlogs || []);

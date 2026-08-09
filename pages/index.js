@@ -77,7 +77,7 @@ export async function getServerSideProps() {
   }
 }
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export default function Home({ initialBlogs, initialLocations, initialQualifications }) {
   const router = useRouter();
@@ -585,8 +585,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                           type="button"
                           onClick={() => router.push(`/search?qualification=${encodeURIComponent(qual.name)}`)}
                           className={`p-4 rounded-xl border text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 group font-bold text-xs ${darkMode
-                              ? "bg-slate-900/40 border-slate-800/80 hover:border-purple-500/50 text-slate-200 hover:text-white"
-                              : "bg-white border-slate-200 hover:border-purple-400/40 text-slate-700 hover:text-slate-900"
+                            ? "bg-slate-900/40 border-slate-800/80 hover:border-purple-500/50 text-slate-200 hover:text-white"
+                            : "bg-white border-slate-200 hover:border-purple-400/40 text-slate-700 hover:text-slate-900"
                             }`}
                         >
                           <div className="text-xl mb-1.5 group-hover:scale-110 transition-transform">🎓</div>

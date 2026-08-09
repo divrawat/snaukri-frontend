@@ -64,7 +64,7 @@ export async function getServerSideProps() {
   }
 }
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export default function SearchPage({ initialBlogs }) {
   const router = useRouter();
@@ -341,8 +341,8 @@ export default function SearchPage({ initialBlogs }) {
                   <div
                     key={blog._id}
                     className={`border rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${darkMode
-                        ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
-                        : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
+                      ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
+                      : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
                       }`}
                   >
                     <div>
@@ -456,8 +456,8 @@ export default function SearchPage({ initialBlogs }) {
                   onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                   disabled={currentPage === 1}
                   className={`px-3 py-2 rounded-lg border font-semibold text-xs transition duration-200 ${currentPage === 1
-                      ? "opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 text-slate-400"
-                      : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-350"
+                    ? "opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 text-slate-400"
+                    : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-350"
                     }`}
                 >
                   Previous
@@ -469,8 +469,8 @@ export default function SearchPage({ initialBlogs }) {
                     key={p}
                     onClick={() => setCurrentPage(p)}
                     className={`px-3 py-2 rounded-lg font-bold text-xs transition duration-200 border ${currentPage === p
-                        ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20"
-                        : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-605 dark:text-slate-300"
+                      ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20"
+                      : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-605 dark:text-slate-300"
                       }`}
                   >
                     {p}
@@ -482,8 +482,8 @@ export default function SearchPage({ initialBlogs }) {
                   onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                   disabled={currentPage === totalPages}
                   className={`px-3 py-2 rounded-lg border font-semibold text-xs transition duration-200 ${currentPage === totalPages
-                      ? "opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 text-slate-400"
-                      : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-650 dark:text-slate-350"
+                    ? "opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 text-slate-400"
+                    : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-650 dark:text-slate-350"
                     }`}
                 >
                   Next

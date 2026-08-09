@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export default function PostDetails({ initialBlog, initialRecentBlogs }) {
   const router = useRouter();

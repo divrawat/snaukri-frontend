@@ -77,7 +77,7 @@ export async function getServerSideProps() {
   }
 }
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export default function Home({ initialBlogs, initialLocations, initialQualifications }) {
   const router = useRouter();
@@ -148,7 +148,7 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
     return val.toLocaleString();
   };
 
-  const nonResultBlogs = blogs.filter((blog) => 
+  const nonResultBlogs = blogs.filter((blog) =>
     !blog.categories?.some((c) => c.name.toLowerCase().includes("result"))
   );
 
@@ -195,7 +195,7 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={SEO_DEFAULTS.title} />
         <meta name="twitter:description" content={SEO_DEFAULTS.description} />
-        
+
         {/* JSON-LD Structured Data Schema Markup */}
         <script
           type="application/ld+json"
@@ -471,8 +471,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                       <div
                         key={blog._id}
                         className={`border rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${darkMode
-                            ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
-                            : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
+                          ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
+                          : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
                           }`}
                       >
                         <div>
@@ -584,11 +584,10 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                           key={qual._id}
                           type="button"
                           onClick={() => router.push(`/search?qualification=${encodeURIComponent(qual.name)}`)}
-                          className={`p-4 rounded-xl border text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 group font-bold text-xs ${
-                            darkMode
+                          className={`p-4 rounded-xl border text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 group font-bold text-xs ${darkMode
                               ? "bg-slate-900/40 border-slate-800/80 hover:border-purple-500/50 text-slate-200 hover:text-white"
                               : "bg-white border-slate-200 hover:border-purple-400/40 text-slate-700 hover:text-slate-900"
-                          }`}
+                            }`}
                         >
                           <div className="text-xl mb-1.5 group-hover:scale-110 transition-transform">🎓</div>
                           <div>{qual.name}</div>
@@ -601,9 +600,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                 {/* 2 Columns: Center & State Government Jobs list structure */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-10">
                   {/* Central Government column */}
-                  <div className={`p-6 rounded-2xl border transition-colors duration-300 ${
-                    darkMode ? "bg-slate-900/40 border-slate-800/80" : "bg-white border-slate-200"
-                  }`}>
+                  <div className={`p-6 rounded-2xl border transition-colors duration-300 ${darkMode ? "bg-slate-900/40 border-slate-800/80" : "bg-white border-slate-200"
+                    }`}>
                     <div className="flex items-center gap-2 border-b pb-4 mb-4 border-slate-200 dark:border-slate-800">
                       <span className="w-1 h-5 bg-indigo-600 rounded-full"></span>
                       <h3 className="text-base font-extrabold text-black dark:text-white">
@@ -617,9 +615,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                         {centralJobs.slice(0, 6).map((job) => (
                           <li key={job._id} className="py-3.5 flex justify-between items-center gap-4 group">
                             <div className="space-y-1">
-                              <Link href={`/${job.slug}`} className={`text-xs font-semibold hover:text-blue-600 dark:hover:text-blue-400 line-clamp-1 transition ${
-                                darkMode ? "text-slate-200" : "text-slate-850"
-                              }`}>
+                              <Link href={`/${job.slug}`} className={`text-xs font-semibold hover:text-blue-600 dark:hover:text-blue-400 line-clamp-1 transition ${darkMode ? "text-slate-200" : "text-slate-850"
+                                }`}>
                                 {job.title}
                               </Link>
                               <div className="flex items-center gap-2 text-[10px] text-slate-400 dark:text-slate-500">
@@ -640,9 +637,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                   </div>
 
                   {/* State Government column */}
-                  <div className={`p-6 rounded-2xl border transition-colors duration-300 ${
-                    darkMode ? "bg-slate-900/40 border-slate-800/80" : "bg-white border-slate-200"
-                  }`}>
+                  <div className={`p-6 rounded-2xl border transition-colors duration-300 ${darkMode ? "bg-slate-900/40 border-slate-800/80" : "bg-white border-slate-200"
+                    }`}>
                     <div className="flex items-center gap-2 border-b pb-4 mb-4 border-slate-200 dark:border-slate-800">
                       <span className="w-1 h-5 bg-amber-500 rounded-full"></span>
                       <h3 className="text-base font-extrabold text-black dark:text-white">
@@ -656,9 +652,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                         {stateJobs.slice(0, 6).map((job) => (
                           <li key={job._id} className="py-3.5 flex justify-between items-center gap-4 group">
                             <div className="space-y-1">
-                              <Link href={`/${job.slug}`} className={`text-xs font-semibold hover:text-blue-600 dark:hover:text-blue-400 line-clamp-1 transition ${
-                                darkMode ? "text-slate-200" : "text-slate-855"
-                              }`}>
+                              <Link href={`/${job.slug}`} className={`text-xs font-semibold hover:text-blue-600 dark:hover:text-blue-400 line-clamp-1 transition ${darkMode ? "text-slate-200" : "text-slate-855"
+                                }`}>
                                 {job.title}
                               </Link>
                               <div className="flex items-center gap-2 text-[10px] text-slate-400 dark:text-slate-500">
@@ -699,9 +694,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                   </div>
 
                   {resultBlogs.length === 0 ? (
-                    <div className={`p-8 rounded-2xl border text-center ${
-                      darkMode ? "bg-slate-900/20 border-slate-800/60" : "bg-white border-slate-200"
-                    }`}>
+                    <div className={`p-8 rounded-2xl border text-center ${darkMode ? "bg-slate-900/20 border-slate-800/60" : "bg-white border-slate-200"
+                      }`}>
                       <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                         No exam results posted yet. Stay tuned!
                       </p>
@@ -713,8 +707,8 @@ export default function Home({ initialBlogs, initialLocations, initialQualificat
                           <div
                             key={blog._id}
                             className={`border rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${darkMode
-                                ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
-                                : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
+                              ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
+                              : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
                               }`}
                           >
                             <div>

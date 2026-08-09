@@ -64,7 +64,7 @@ export async function getServerSideProps() {
   }
 }
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export default function SearchPage({ initialBlogs }) {
   const router = useRouter();
@@ -234,9 +234,8 @@ export default function SearchPage({ initialBlogs }) {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      darkMode ? "bg-slate-950 text-white" : "bg-slate-50 text-black"
-    }`}>
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-slate-950 text-white" : "bg-slate-50 text-black"
+      }`}>
       <Head>
         <title>{getPageTitle()} — {SITE_NAME}</title>
         <meta name="description" content={`Explore and search verified government job alerts, exams preparation updates, and notifications for: ${getPageTitle()}.`} />
@@ -257,7 +256,7 @@ export default function SearchPage({ initialBlogs }) {
           <h1 className="text-xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
             {getPageTitle()}
           </h1>
-          
+
           {/* Inner Search Box */}
           <div className="max-w-3xl mx-auto pt-2">
             <form onSubmit={handleSearchSubmit} className="bg-white p-1 rounded-xl md:rounded-2xl shadow-lg flex flex-col md:flex-row gap-1.5 border border-slate-200">
@@ -319,7 +318,7 @@ export default function SearchPage({ initialBlogs }) {
                   Found {filteredBlogs.length} Job Alerts{getCounterSuffix()}
                 </h2>
               </div>
-              
+
               {/* Reset link if filters are active */}
               {(router.query.q || router.query.state !== "All" || router.query.category || router.query.tag || router.query.location) && (
                 <button
@@ -341,18 +340,16 @@ export default function SearchPage({ initialBlogs }) {
                 {currentBlogs.map((blog) => (
                   <div
                     key={blog._id}
-                    className={`border rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${
-                      darkMode
+                    className={`border rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${darkMode
                         ? "bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/80 hover:border-blue-500/50 hover:shadow-blue-500/5"
                         : "bg-white hover:bg-slate-50/50 border-slate-200 hover:border-blue-400/40 hover:shadow-indigo-500/5"
-                    }`}
+                      }`}
                   >
                     <div>
                       <div className="p-5 space-y-4">
                         {/* Title */}
-                        <h3 className={`text-sm font-bold line-clamp-2 leading-snug min-h-[40px] transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 ${
-                          darkMode ? "text-slate-100" : "text-slate-900"
-                        }`}>
+                        <h3 className={`text-sm font-bold line-clamp-2 leading-snug min-h-[40px] transition-colors duration-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 ${darkMode ? "text-slate-100" : "text-slate-900"
+                          }`}>
                           <Link href={`/${blog.slug}`}>
                             {blog.title}
                           </Link>
@@ -394,7 +391,7 @@ export default function SearchPage({ initialBlogs }) {
                               @{blog.locations[0].name}
                             </button>
                           )}
-                          
+
                           {blog.tags && blog.tags.length > 0 && (
                             <button
                               type="button"
@@ -425,9 +422,8 @@ export default function SearchPage({ initialBlogs }) {
                     </div>
 
                     {/* Card Action footer */}
-                    <div className={`p-5 pt-3 flex items-center justify-between border-t ${
-                      darkMode ? "border-slate-800/60" : "border-slate-150"
-                    }`}>
+                    <div className={`p-5 pt-3 flex items-center justify-between border-t ${darkMode ? "border-slate-800/60" : "border-slate-150"
+                      }`}>
                       {/* Views */}
                       <div className="flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 font-medium">
                         <svg className="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -459,11 +455,10 @@ export default function SearchPage({ initialBlogs }) {
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                   disabled={currentPage === 1}
-                  className={`px-3 py-2 rounded-lg border font-semibold text-xs transition duration-200 ${
-                    currentPage === 1
+                  className={`px-3 py-2 rounded-lg border font-semibold text-xs transition duration-200 ${currentPage === 1
                       ? "opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 text-slate-400"
                       : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-350"
-                  }`}
+                    }`}
                 >
                   Previous
                 </button>
@@ -473,11 +468,10 @@ export default function SearchPage({ initialBlogs }) {
                   <button
                     key={p}
                     onClick={() => setCurrentPage(p)}
-                    className={`px-3 py-2 rounded-lg font-bold text-xs transition duration-200 border ${
-                      currentPage === p
+                    className={`px-3 py-2 rounded-lg font-bold text-xs transition duration-200 border ${currentPage === p
                         ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20"
                         : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-605 dark:text-slate-300"
-                    }`}
+                      }`}
                   >
                     {p}
                   </button>
@@ -487,11 +481,10 @@ export default function SearchPage({ initialBlogs }) {
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                   disabled={currentPage === totalPages}
-                  className={`px-3 py-2 rounded-lg border font-semibold text-xs transition duration-200 ${
-                    currentPage === totalPages
+                  className={`px-3 py-2 rounded-lg border font-semibold text-xs transition duration-200 ${currentPage === totalPages
                       ? "opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 text-slate-400"
                       : "border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-900 text-slate-650 dark:text-slate-350"
-                  }`}
+                    }`}
                 >
                   Next
                 </button>

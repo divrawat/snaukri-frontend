@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 export default function PostDetails({ initialBlog, initialRecentBlogs }) {
   const router = useRouter();
@@ -104,54 +104,53 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
 
   const schemaData = isResult
     ? {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": blog.title,
-        "description": getExcerpt(blog.content),
-        "image": blog.featuredImage || `${FRONTEND_URL}/logo.webp`,
-        "datePublished": blog.createdAt,
-        "dateModified": blog.updatedAt || blog.createdAt,
-        "author": {
-          "@type": "Person",
-          "name": "Divyanshu Rawat"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": SITE_NAME,
-          "logo": {
-            "@type": "ImageObject",
-            "url": `${FRONTEND_URL}/logo.webp`
-          }
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": blog.title,
+      "description": getExcerpt(blog.content),
+      "image": blog.featuredImage || `${FRONTEND_URL}/logo.webp`,
+      "datePublished": blog.createdAt,
+      "dateModified": blog.updatedAt || blog.createdAt,
+      "author": {
+        "@type": "Person",
+        "name": "Divyanshu Rawat"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": SITE_NAME,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${FRONTEND_URL}/logo.webp`
         }
       }
+    }
     : {
-        "@context": "https://schema.org",
-        "@type": "JobPosting",
-        "title": blog.title,
-        "description": getExcerpt(blog.content),
-        "datePosted": blog.createdAt,
-        "validThrough": blog.endDate || new Date(new Date(blog.createdAt).getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-        "employmentType": "FULL_TIME",
-        "hiringOrganization": {
-          "@type": "Organization",
-          "name": SITE_NAME,
-          "sameAs": FRONTEND_URL,
-          "logo": `${FRONTEND_URL}/logo.webp`
-        },
-        "jobLocation": {
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": blog.locations && blog.locations.length > 0 ? blog.locations[0].name : "India",
-            "addressCountry": "IN"
-          }
+      "@context": "https://schema.org",
+      "@type": "JobPosting",
+      "title": blog.title,
+      "description": getExcerpt(blog.content),
+      "datePosted": blog.createdAt,
+      "validThrough": blog.endDate || new Date(new Date(blog.createdAt).getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      "employmentType": "FULL_TIME",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": SITE_NAME,
+        "sameAs": FRONTEND_URL,
+        "logo": `${FRONTEND_URL}/logo.webp`
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": blog.locations && blog.locations.length > 0 ? blog.locations[0].name : "India",
+          "addressCountry": "IN"
         }
-      };
+      }
+    };
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${
-      darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-800"
-    }`}>
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? "bg-slate-950 text-slate-100" : "bg-slate-50 text-slate-800"
+      }`}>
       <Head>
         <title>{blog.title} — {SITE_NAME}</title>
         <meta name="description" content={getExcerpt(blog.content)} />
@@ -166,7 +165,7 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
         <meta name="twitter:title" content={`${blog.title} — ${SITE_NAME}`} />
         <meta name="twitter:description" content={getExcerpt(blog.content)} />
         {blog.featuredImage && <meta name="twitter:image" content={blog.featuredImage} />}
-        
+
         {/* JSON-LD Structured Data Schema Markup */}
         <script
           type="application/ld+json"
@@ -183,8 +182,8 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
               {/* Metadata badges */}
               <div className="flex flex-wrap gap-2">
                 {blog.categories?.map((cat) => (
-                  <button 
-                    key={cat._id} 
+                  <button
+                    key={cat._id}
                     onClick={() => router.push(`/search?category=${encodeURIComponent(cat.name)}`)}
                     className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 active:scale-95 transition animate-soft-bounce"
                   >
@@ -192,8 +191,8 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                   </button>
                 ))}
                 {blog.locations?.map((loc) => (
-                  <button 
-                    key={loc._id} 
+                  <button
+                    key={loc._id}
                     onClick={() => router.push(`/search?location=${encodeURIComponent(loc.name)}`)}
                     className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 active:scale-95 transition"
                   >
@@ -201,8 +200,8 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                   </button>
                 ))}
                 {blog.qualifications?.map((qual) => (
-                  <button 
-                    key={qual._id} 
+                  <button
+                    key={qual._id}
                     onClick={() => router.push(`/search?qualification=${encodeURIComponent(qual.name)}`)}
                     className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/20 hover:bg-purple-500/20 active:scale-95 transition"
                   >
@@ -212,19 +211,17 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
               </div>
 
               {/* Title */}
-              <h1 className={`text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight ${
-                darkMode ? "text-white" : "text-black"
-              }`}>
+              <h1 className={`text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight ${darkMode ? "text-white" : "text-black"
+                }`}>
                 {blog.title}
               </h1>
 
               {/* Author and Date */}
-              <div className={`flex items-center gap-3 text-sm border-b pb-6 ${
-                darkMode ? "text-slate-400 border-slate-900" : "text-black/70 border-slate-200"
-              }`}>
-                <img 
-                  src="/divyanshu.png" 
-                  alt="Divyanshu Rawat" 
+              <div className={`flex items-center gap-3 text-sm border-b pb-6 ${darkMode ? "text-slate-400 border-slate-900" : "text-black/70 border-slate-200"
+                }`}>
+                <img
+                  src="/divyanshu.png"
+                  alt="Divyanshu Rawat"
                   className="w-6 h-6 rounded-full object-cover border border-blue-500/20 shadow-sm shrink-0"
                 />
                 <span className={`font-semibold ${darkMode ? "text-slate-350" : "text-black"}`}>Divyanshu Rawat</span>
@@ -234,18 +231,16 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
 
               {/* Featured Image Below Title and Meta */}
               {blog.featuredImage && (
-                <div className={`w-full h-[360px] overflow-hidden rounded-2xl border shadow-xl ${
-                  darkMode ? "border-slate-900" : "border-slate-200"
-                }`}>
+                <div className={`w-full h-[360px] overflow-hidden rounded-2xl border shadow-xl ${darkMode ? "border-slate-900" : "border-slate-200"
+                  }`}>
                   <img src={blog.featuredImage} alt={blog.title} className="w-full h-full object-cover" />
                 </div>
               )}
 
               {/* Rich Content Body */}
-              <div 
-                className={`prose max-w-none leading-relaxed text-lg ${
-                  darkMode ? "prose-invert text-slate-350" : "text-black"
-                }`}
+              <div
+                className={`prose max-w-none leading-relaxed text-lg ${darkMode ? "prose-invert text-slate-350" : "text-black"
+                  }`}
                 dangerouslySetInnerHTML={{ __html: blog.content }}
               />
 
@@ -254,12 +249,11 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                 <div className="flex flex-wrap gap-2 py-4 border-t border-b border-slate-100 dark:border-slate-900">
                   <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider self-center mr-2">Tags:</span>
                   {blog.tags.map((tag) => (
-                    <button 
-                      key={tag._id} 
+                    <button
+                      key={tag._id}
                       onClick={() => router.push(`/search?tag=${encodeURIComponent(tag.name)}`)}
-                      className={`px-2.5 py-0.5 rounded text-xs border transition hover:bg-opacity-80 active:scale-95 ${
-                        darkMode ? "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-750" : "bg-slate-100 border-slate-200 text-black hover:bg-slate-200"
-                      }`}
+                      className={`px-2.5 py-0.5 rounded text-xs border transition hover:bg-opacity-80 active:scale-95 ${darkMode ? "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-750" : "bg-slate-100 border-slate-200 text-black hover:bg-slate-200"
+                        }`}
                     >
                       #{tag.name}
                     </button>
@@ -268,12 +262,11 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
               )}
 
               {/* Author Box */}
-              <div className={`mt-12 p-6 rounded-2xl border flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-all duration-300 ${
-                darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-md"
-              }`}>
-                <img 
-                  src="/divyanshu.png" 
-                  alt="Divyanshu Rawat" 
+              <div className={`mt-12 p-6 rounded-2xl border flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-all duration-300 ${darkMode ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-200 shadow-md"
+                }`}>
+                <img
+                  src="/divyanshu.png"
+                  alt="Divyanshu Rawat"
                   className="w-20 h-20 rounded-full object-cover shrink-0 border-2 border-blue-500/40"
                 />
                 <div className="space-y-3 text-center sm:text-left">
@@ -283,7 +276,7 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                   <p className={`text-xs md:text-sm leading-relaxed ${darkMode ? "text-slate-400" : "text-slate-650"}`}>
                     25 years old Developer & Blogger. Passionate about helping job seekers find verified central and state government job alerts, exams preparation updates, and career opportunities.
                   </p>
-                  
+
                   {/* Social Links */}
                   <div className="flex justify-center sm:justify-start gap-3.5 pt-2">
                     {/* Facebook */}
@@ -295,7 +288,7 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                       title="Facebook Page"
                     >
                       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
                       </svg>
                     </a>
 
@@ -334,7 +327,7 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                       title="YouTube Channel"
                     >
                       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                        <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                       </svg>
                     </a>
                   </div>
@@ -344,12 +337,10 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
           </div>
 
           {/* RIGHT SIDE: Recent Posts */}
-          <div className={`space-y-6 lg:border-l lg:pl-8 ${
-            darkMode ? "lg:border-slate-900" : "lg:border-slate-200"
-          }`}>
-            <h3 className={`text-lg font-bold uppercase tracking-wider border-b pb-3 ${
-              darkMode ? "text-white border-slate-900" : "text-black border-slate-200"
+          <div className={`space-y-6 lg:border-l lg:pl-8 ${darkMode ? "lg:border-slate-900" : "lg:border-slate-200"
             }`}>
+            <h3 className={`text-lg font-bold uppercase tracking-wider border-b pb-3 ${darkMode ? "text-white border-slate-900" : "text-black border-slate-200"
+              }`}>
               Recent Posts
             </h3>
             {recentBlogs.length === 0 ? (
@@ -367,9 +358,8 @@ export default function PostDetails({ initialBlog, initialRecentBlogs }) {
                       <span className="text-[10px] text-slate-500 font-medium">
                         {formatDate(recent.createdAt)}
                       </span>
-                      <h4 className={`font-bold text-sm transition-colors duration-200 leading-snug ${
-                        darkMode ? "text-slate-200 group-hover:text-indigo-400" : "text-black group-hover:text-indigo-600"
-                      }`}>
+                      <h4 className={`font-bold text-sm transition-colors duration-200 leading-snug ${darkMode ? "text-slate-200 group-hover:text-indigo-400" : "text-black group-hover:text-indigo-600"
+                        }`}>
                         <Link href={`/${recent.slug}`}>
                           {recent.title}
                         </Link>

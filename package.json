@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "next": "16.2.12",
+    "picomatch": "^4.0.5",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "suneditor": "^2.47.8",
-    "suneditor-react": "^3.6.1"
+    "suneditor-react": "^3.6.1",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
